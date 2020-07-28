@@ -25,3 +25,9 @@
 - App icon 변경
 - 앱이름 변경
 - 배포 파이프라인 설계 (github actions, fastlane)
+
+### 3일차
+
+- 기업상세 스크린 UI 디자인
+- 기업상세 스크린 UI 구현
+- 기업개황 API -> Data Model -> UI 연결
