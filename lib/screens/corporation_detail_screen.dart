@@ -12,7 +12,6 @@ class CorporationDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
           title: Text('기업상세'),
         ),
         body: Padding(
@@ -43,23 +42,27 @@ class CorporationDetailScreen extends StatelessWidget {
                 height: 8,
               ),
               Divider(),
-              DetailItemWidget('CEO', corporationDetail.ceoNm),
-              DetailItemWidget('종목코드', corporationDetail.stockCode),
-              DetailItemWidget('법인등록번호', corporationDetail.jurirNo),
-              DetailItemWidget('사업자등록번호', corporationDetail.bizrNo),
-              DetailItemWidget('전화번호', corporationDetail.phnNo),
-              DetailItemWidget('팩스번호', corporationDetail.faxNo),
-              DetailItemWidget('설립일', corporationDetail.estDt),
-              DetailItemWidget('결산월', corporationDetail.accMt),
-              DetailItemWidget('홈페이지', corporationDetail.hmUrl, 1),
-              DetailItemWidget('IR홈페이지', '', 1),
+              DetailItemWidget(label: 'CEO', value: corporationDetail.ceoNm),
+              DetailItemWidget(
+                  label: '종목코드', value: corporationDetail.stockCode),
+              DetailItemWidget(
+                  label: '법인등록번호', value: corporationDetail.jurirNo),
+              DetailItemWidget(
+                  label: '사업자등록번호', value: corporationDetail.bizrNo),
+              DetailItemWidget(label: '전화번호', value: corporationDetail.phnNo),
+              DetailItemWidget(label: '팩스번호', value: corporationDetail.faxNo),
+              DetailItemWidget(label: '설립일', value: corporationDetail.estDt),
+              DetailItemWidget(label: '결산월', value: corporationDetail.accMt),
+              DetailItemWidget(
+                  label: '홈페이지', value: corporationDetail.hmUrl, maxLines: 1),
+              DetailItemWidget(label: 'IR홈페이지', value: '', maxLines: 1),
               Divider(),
               SizedBox(
                 height: 8,
               ),
               Row(
                 children: <Widget>[
-                  Icon(Icons.location_on),
+                  Icon(Icons.place),
                   SizedBox(
                     width: 8,
                   ),
@@ -73,11 +76,11 @@ class CorporationDetailScreen extends StatelessWidget {
 }
 
 class DetailItemWidget extends StatelessWidget {
-  final String title;
-  final String text;
+  final String label;
+  final String value;
   final int maxLines;
 
-  DetailItemWidget(this.title, this.text, [this.maxLines]);
+  DetailItemWidget({this.label, this.value, this.maxLines = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -88,15 +91,15 @@ class DetailItemWidget extends StatelessWidget {
           Expanded(
               flex: 1,
               child: Text(
-                title,
+                label,
                 style: TextStyle(color: Colors.grey),
               )),
           Expanded(
               flex: 2,
-              child: maxLines == null
-                  ? Text(text)
+              child: maxLines == 0
+                  ? Text(value)
                   : Text(
-                      text,
+                      label,
                       maxLines: maxLines,
                     ))
         ],
